@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Bharata Bulletin</title>
+<link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=IM+Fell+English:ital@0;1&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #f2e8d5;
+    --paper-dark: #e8d9b8;
+    --ink: #1a1008;
+    --ink-light: #3d2b1a;
+    --rule: #2a1a0a;
+    --accent: #8b1a1a;
+    --faded: #7a6a50;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #c8b89a;
+    font-family: 'Libre Baskerville', serif;
+    color: var(--ink);
+    min-height: 100vh;
+    padding: 20px;
+  }
+
+  /* Paper texture overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: 
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.4;
+  }
+
+  .newspaper {
+    max-width: 1100px;
+    margin: 0 auto;
+    background: var(--paper);
+    box-shadow: 4px 4px 30px rgba(0,0,0,0.5), inset 0 0 60px rgba(0,0,0,0.05);
+    position: relative;
+  }
+
+  /* ── MASTHEAD ── */
+  .masthead {
+    border-bottom: 4px double var(--rule);
+    padding: 12px 20px 8px;
+    text-align: center;
+    position: relative;
+    background: var(--paper);
+  }
+
+  .press-photo {
+  width: 100%;
+  margin: 8px 0;
+  border: 1px solid var(--rule);
+}
+
+.press-photo img {
+  width: 100%;
+  display: block;
+  filter: grayscale(30%) sepia(20%);
+}
+
+.press-photo figcaption {
+  font-family: 'IM Fell English', serif;
+  font-style: italic;
+  font-size: 8.5px;
+  color: var(--faded);
+  padding: 3px 4px;
+  border-top: 1px solid var(--rule);
+  background: var(--paper-dark);
+}
+
+  .masthead-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'IM Fell English', serif;
+    font-size: 9px;
+    letter-spacing: 0.5px;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 6px;
+    margin-bottom: 6px;
+    color: var(--ink-light);
+  }
+
+  .masthead-top span { max-width: 200px; }
+
+  .paper-name {
+    font-family: 'UnifrakturMaguntia', cursive;
+    font-size: 72px;
+    line-height: 1;
+    color: var(--ink);
+    letter-spacing: -1px;
+    margin: 4px 0;
+  }
+
+  .masthead-tagline {
+    font-family: 'IM Fell English', serif;
+    font-style: italic;
+    font-size: 11px;
+    letter-spacing: 3px;
+    color: var(--ink-light);
+    margin-bottom: 6px;
+  }
+
+  .masthead-meta {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'IM Fell English', serif;
+    font-size: 9px;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    padding: 3px 0;
+    margin-top: 4px;
+  }
+
+  /* ── RULES ── */
+  .rule-thick { border-top: 3px solid var(--rule); margin: 6px 0; }
+  .rule-thin { border-top: 1px solid var(--rule); margin: 4px 0; }
+  .rule-double { border-top: 4px double var(--rule); margin: 6px 0; }
+
+  /* ── PAGE LAYOUT ── */
+  .page { padding: 16px 20px; }
+
+  .col-grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 0; }
+  .col-grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+  .col-grid-4 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 0; }
+
+  .col { padding: 0 12px; border-right: 1px solid var(--rule); }
+  .col:first-child { padding-left: 0; }
+  .col:last-child { border-right: none; padding-right: 0; }
+
+  /* ── TYPOGRAPHY ── */
+  .section-label {
+    font-family: 'IM Fell English', serif;
+    font-size: 8px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-align: center;
+    color: var(--faded);
+    padding: 2px 0;
+  }
+
+  .headline-xl {
+    font-family: 'Playfair Display', serif;
+    font-size: 52px;
+    font-weight: 900;
+    line-height: 1;
+    text-align: center;
+    margin: 6px 0;
+  }
+
+  .headline-lg {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 900;
+    line-height: 1.05;
+    margin: 6px 0;
+  }
+
+  .headline-md {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.1;
+    margin: 5px 0;
+  }
+
+  .headline-sm {
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 4px 0;
+  }
+
+  .subhead {
+    font-family: 'IM Fell English', serif;
+    font-style: italic;
+    font-size: 11px;
+    text-align: center;
+    color: var(--ink-light);
+    margin: 3px 0 6px;
+  }
+
+  .byline {
+    font-family: 'IM Fell English', serif;
+    font-size: 9px;
+    letter-spacing: 1px;
+    color: var(--faded);
+    margin-bottom: 6px;
+    text-transform: uppercase;
+  }
+
+  .body-text {
+    font-family: 'IM Fell English', serif;
+    font-size: 10.5px;
+    line-height: 1.55;
+    text-align: justify;
+    hyphens: auto;
+  }
+
+  .body-text p { margin-bottom: 5px; }
+
+  .dropcap::first-letter {
+    font-family: 'Playfair Display', serif;
+    font-size: 52px;
+    font-weight: 900;
+    float: left;
+    line-height: 0.8;
+    margin: 4px 4px 0 0;
+    color: var(--ink);
+  }
+
+  /* ── DECORATIVE ── */
+  .ornament {
+    text-align: center;
+    font-size: 14px;
+    color: var(--faded);
+    margin: 4px 0;
+    letter-spacing: 6px;
+  }
+
+  .centered { text-align: center; }
+
+  .box {
+    border: 2px solid var(--rule);
+    padding: 8px;
+    margin: 8px 0;
+  }
+
+  .box-double {
+    border: 1px solid var(--rule);
+    outline: 2px solid var(--rule);
+    outline-offset: 3px;
+    padding: 8px;
+    margin: 10px 0;
+  }
+
+  .shaded {
+    background: var(--paper-dark);
+  }
+
+  .inverted {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 4px 8px;
+    text-align: center;
+  }
+
+  .inverted .headline-lg, .inverted .headline-md { color: var(--paper); }
+
+  /* ── SPECIAL ELEMENTS ── */
+  .pull-quote {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 14px;
+    border-top: 2px solid var(--rule);
+    border-bottom: 2px solid var(--rule);
+    padding: 6px 0;
+    margin: 8px 0;
+    text-align: center;
+  }
+
+  .ad-box {
+    border: 3px solid var(--rule);
+    padding: 10px;
+    margin: 8px 0;
+    text-align: center;
+    background: var(--paper-dark);
+  }
+
+  .ad-box .ad-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+
+  .ad-box .ad-sub {
+    font-family: 'IM Fell English', serif;
+    font-style: italic;
+    font-size: 11px;
+    margin: 3px 0;
+  }
+
+  .ad-box .ad-detail {
+    font-family: 'IM Fell English', serif;
+    font-size: 9.5px;
+    margin: 2px 0;
+  }
+
+  /* ── GOSSIP COLUMN ── */
+  .gossip-item {
+    margin-bottom: 8px;
+    padding-bottom: 8px;
+    border-bottom: 1px dotted var(--faded);
+  }
+  .gossip-item:last-child { border-bottom: none; }
+
+  .gossip-name {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 11px;
+  }
+
+  /* ── OPINION / LETTER ── */
+  .letter {
+    background: var(--paper-dark);
+    border-left: 3px solid var(--rule);
+    padding: 6px 8px;
+    margin: 5px 0;
+    font-family: 'IM Fell English', serif;
+    font-size: 10px;
+    font-style: italic;
+  }
+  .letter-sig {
+    font-style: normal;
+    font-size: 9px;
+    color: var(--faded);
+    margin-top: 3px;
+  }
+
+  /* ── OBITUARY ── */
+  .obit {
+    border: 1px solid var(--rule);
+    padding: 8px;
+    margin: 6px 0;
+    background: var(--paper-dark);
+  }
+
+  /* ── CROSSWORD ── */
+  .crossword-grid {
+    display: grid;
+    grid-template-columns: repeat(10, 24px);
+    grid-template-rows: repeat(10, 24px);
+    gap: 2px;
+    margin: 8px auto;
+    width: fit-content;
+  }
+
+  .cell {
+    width: 24px;
+    height: 24px;
+    border: 1px solid var(--ink);
+    background: var(--paper);
+    font-size: 6px;
+    font-family: 'IM Fell English', serif;
+    color: var(--faded);
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 1px;
+    position: relative;
+    cursor: text;
+  }
+
+  .cell.black { background: var(--ink); border-color: var(--ink); cursor: default; }
+  .cell input {
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: transparent;
+    text-align: center;
+    font-family: 'IM Fell English', serif;
+    font-size: 12px;
+    font-weight: bold;
+    color: var(--ink);
+    padding: 0;
+    text-transform: uppercase;
+  }
+  .cell input:focus { outline: none; background: rgba(139,26,26,0.1); }
+  .cell-num {
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    font-size: 5.5px;
+    color: var(--ink-light);
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .clue-list { font-family: 'IM Fell English', serif; font-size: 9.5px; line-height: 1.6; }
+  .clue-list strong { font-size: 10px; }
+
+  /* ── COMIC STRIP ── */
+  .comic-strip {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4px;
+    margin: 8px 0;
+  }
+
+  .comic-panel {
+    border: 2px solid var(--ink);
+    background: var(--paper);
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .panel-art {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px;
+    font-size: 28px;
+    background: var(--paper-dark);
+  }
+
+  .panel-caption {
+    border-top: 1px solid var(--ink);
+    padding: 4px;
+    font-family: 'IM Fell English', serif;
+    font-size: 8.5px;
+    font-style: italic;
+    text-align: center;
+    background: var(--paper);
+  }
+
+  .speech-bubble {
+    background: white;
+    border: 1.5px solid var(--ink);
+    border-radius: 8px;
+    padding: 3px 5px;
+    font-family: 'IM Fell English', serif;
+    font-size: 7.5px;
+    text-align: center;
+    margin: 3px;
+    position: relative;
+  }
+
+  /* ── POLL ── */
+  .poll-bar-container { margin: 4px 0; }
+  .poll-label {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'IM Fell English', serif;
+    font-size: 10px;
+    margin-bottom: 2px;
+  }
+  .poll-bar {
+    height: 12px;
+    background: var(--paper-dark);
+    border: 1px solid var(--rule);
+    position: relative;
+  }
+  .poll-fill {
+    height: 100%;
+    background: var(--ink);
+    transition: width 1s ease;
+  }
+
+  /* ── MARKET TABLE ── */
+  .market-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'IM Fell English', serif;
+    font-size: 9.5px;
+    margin: 6px 0;
+  }
+  .market-table th {
+    border-bottom: 2px solid var(--rule);
+    border-top: 2px solid var(--rule);
+    padding: 3px 4px;
+    text-align: left;
+    font-weight: bold;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .market-table td {
+    padding: 2px 4px;
+    border-bottom: 1px dotted var(--faded);
+  }
+  .market-table .up { color: #1a5c1a; font-weight: bold; }
+  .market-table .down { color: #8b1a1a; font-weight: bold; }
+
+  /* ── PAGE BREAK ── */
+  .page-break {
+    border: none;
+    border-top: 6px double var(--rule);
+    margin: 0;
+  }
+
+  .page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 4px 20px;
+    font-family: 'IM Fell English', serif;
+    font-size: 9px;
+    border-bottom: 3px double var(--rule);
+    background: var(--paper-dark);
+  }
+
+  /* ── WEATHER BOX ── */
+  .weather-box {
+    font-family: 'IM Fell English', serif;
+    font-size: 9px;
+    border: 1px solid var(--rule);
+    padding: 5px;
+    text-align: center;
+    background: var(--paper-dark);
+    margin: 6px 0;
+  }
+
+  /* span helpers */
+  .italic { font-style: italic; }
+  .bold { font-weight: bold; }
+  .caps { font-variant: small-caps; letter-spacing: 1px; }
+  .red { color: var(--accent); }
+
+  /* ── EDITABLE HINT ── */
+  [contenteditable="true"]:hover {
+    outline: 1px dashed rgba(139,26,26,0.4);
+    cursor: text;
+  }
+  [contenteditable="true"]:focus {
+    outline: 2px solid rgba(139,26,26,0.6);
+    background: rgba(255,255,255,0.3);
+  }
+
+  /* print */
+  @media print {
+    body { background: white; padding: 0; }
+    .newspaper { box-shadow: none; max-width: 100%; }
+    [contenteditable]:hover, [contenteditable]:focus { outline: none; background: transparent; }
+  }
+</style>
+</head>
+<body>
+<div class="newspaper">
+
+  <!-- ══════════════ MASTHEAD ══════════════ -->
+  <div class="masthead">
+    <div class="masthead-top">
+      <span>Dvapara Yuga</span>
+      <span style="font-size:8px; letter-spacing:1px; color:var(--faded)">✦ &nbsp; ✦ &nbsp; ✦</span>
+      <span style="text-align:right">Price: Two coins</span>
+    </div>
+    <div class="paper-name" contenteditable="true">The Bharata Bulletin</div>
+    <div class="masthead-meta">
+      <span>VOL. 6 — NO. 7</span>
+      <span>HASTINAPUR, YEAR OF THE GREAT WAR</span>
+      <span>SPECIAL WAR EDITION</span>
+    </div>
+  </div>
+
+  <!-- ══════════════ PAGE ONE ══════════════ -->
+  <div class="page">
+
+    <!-- Row 1: Breaking news headline -->
+    <div class="rule-thick"></div>
+    <div class="section-label" contenteditable="true">⚔ Breaking News ⚔</div>
+    <div class="rule-thin"></div>
+
+    <div class="headline-xl" contenteditable="true">WAR DECLARED</div>
+    <div class="subhead" contenteditable="true">The Cousins to Meet on the Battlefield — Kingdoms Across the Lands Choose Sides</div>
+    <div class="rule-thick"></div>
+
+    <!-- Row 2: Three-column main story -->
+    <div class="col-grid-3">
+
+      <!-- Col 1: Main war story -->
+      <div class="col">
+        <div class="body-text dropcap" contenteditable="true">
+          <p>In a development that shocks no one who has been paying attention for the past fourteen years, the Pandava brothers and the Kaurava princes have formally declared war, setting the sacred plains of Kurukshetra as their battlefield. The two great armies are expected to meet at dawn.</p>
+          <p>The Pandavas stand under the command of Dhrishtadyumna of Panchala, with the great Arjuna, Wolfbelly Bhima, the twin warriors Nakula and Sahadeva, Satyaki of the Vrishnis, and Shikhandi of Panchala among its prominent champions. The Kaurava army is led by the venerable Bhishma, grandsire of both houses, alongside Drona, Ashvatthama, Kripacharya, Shalya, and Jayadratha of Sindhu.</p>
+          <p>Readers may note the conspicuous absence of Karna from active duty. Coverage following.</p>
+        </div>
+        <div class="pull-quote" contenteditable="true">"He chose the man over the million." — On Arjuna's decision</div>
+        <div class="body-text" contenteditable="true">
+<p>Among the most discussed decisions today, is when Lord Krishna offered the two sides a choice — his army of one million soldiers or Krishna himself. Furthermore, Krishna would abstain from fighting. Arjuna was offered the choice first and without hesitation, he chooses Krishna as his charioteer. "I know you could win this war single-handed, and so could I. With you steering my chariot, we shall gain great glory together. Best of men, may we prevail!" Duryodhana, on the other hand was exultant to recieve an army of a million of the strongest warriors. Analysts across the subcontinent continue to debate who got the short end of the stick.</p>
+</div>
+      </div>
+
+      <!-- Col 2: Balarama + Mobilisation -->
+      <div class="col">
+
+        <div class="rule-thin"></div>
+        <div class="headline-sm centered" contenteditable="true">FIELDS EMPTIED, STABLES STRIPPED</div>
+        <div class="rule-thin"></div>
+        <div class="body-text" contenteditable="true">
+          <p>Across the countryside, recruiters from both camps have swept through villages and farms, pressing men into service. Farmhands who last week tended rice paddies now sharpen spears. Granaries are requisitioned. Families watch the roads.</p>
+          <p>The beasts of war assemble in numbers not seen in living memory: horses trained to charge in tight formation; fighting elephants schooled to trample into the thick of battle; and innumerable beasts hauling across the dust of the plain toward Kurukshetra.</p>
+        </div>
+
+        <div class="weather-box">
+          <strong style="font-size:10px; font-family:'Playfair Display',serif">BATTLEFIELD CONDITIONS</strong><br>
+          Kurukshetra Plains<br>
+          ☁ Overcast. Ominous. Dust on the wind.<br>
+          <span style="color:var(--faded)">Forecast: Heavy casualties. Zero chance of peace.</span>
+        </div>
+
+        <figure class="press-photo">
+  <img src="diplomacy-mahabharata-war-1.jpg" alt="Diplomacies among the Kurus and Pandus">
+  <figcaption>Diplomacies among the Kurus and Pandus — our artist's impression</figcaption>
+</figure>
+
+      </div>
+
+
+
+      <!-- Col 3: Bhishma/Shikhandi + Karna -->
+      <div class="col">
+        <div class="inverted">
+          <div class="headline-md" contenteditable="true"> Internal Disputes </div>
+          <div style="font-family:'IM Fell English',serif; font-size:9px; font-style:italic; color:var(--paper-dark)">And their reasons for refusing to fight</div>
+        </div>
+        <div class="body-text" style="margin-top:8px" contenteditable="true">
+          <p><strong>BHISHMA & SHIKHANDIN:</strong> The grandsire Bhishma, commanding the Kaurava forces, has announced one condition his own generals find deeply peculiar: he will not raise his bow against Shikhandi of Panchala because Shikhandin was, in a previous life, a woman. Born Amba, princess of Kashi, she was wronged by Bhishma in her first life and returned reborn, sworn to destroy him. Bhishma knows this and will not fight Shikhandin.</p>
+          <p>The Pandavas are placing Shikhandi at the very front of their formation. Bhishma is reported to be aware of this. Both parties appear to have accepted the logic of the arrangement.</p>
+          <div class="rule-thin"></div>
+          <p><strong>KARNA & BHISHMA:</strong> The great Karna, Duryodhana's most valued champion, has refused to fight so long as Bhishma holds command. The enmity between the two men is bitter: Bhishma often undermines Karna's prowess due to his social status. Karna refuses to serve under the man who diminshes him. Instead, the moment Bhishma falls, Karna will take the field.</p>
+          <div class="rule-thin"></div>
+          <p><strong>BALARAMA:</strong> Having taught both men personally, Balarama declared himself unable in conscience to take up arms against his own students. His departure reflects his brother Krishna's, who chooses to have a non-combatant role on the Pandava side as an unarmed charioteer."</p>
+        </div>
+      </div>
+    </div><!-- /col-grid-3 -->
+
+    <div class="rule-double"></div>
+
+    <!-- Row 3: Marriage announcement + Ads + Poll preview -->
+    <div class="col-grid-3">
+
+      <div class="col">
+        <div class="section-label">✦ Celebrations ✦</div>
+        <div class="rule-thin"></div>
+        <div class="headline-md centered" contenteditable="true">WEDDING OF THE SEASON</div>
+        <div class="subhead" contenteditable="true">Prince Abhimanyu Weds Princess Uttaraa</div>
+        <div class="ornament">— ❧ —</div>
+        <div class="body-text" contenteditable="true">
+          <p>In what guests are calling the calm  before the storm, the marriage of young Abhimanyu — son of Arjuna and Subhadra of Dvaraka — to Princess Uttaraa of Virata was celebrated with great ceremony at the Virata palace.</p>
+          <p>The groom, trained personally by Lord Krishna, is widely considered the most promising warrior of his generation. He reportedly learned the Chakravyuha formation while still in his mother's womb, though sources suggest he may have missed the exit strategy.</p>
+          <p>The bride wore silk. The groom wore armour. The guests were mostly warriors. It was, by all accounts, a beautiful occasion.</p>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="section-label">✦ Commercial ✦</div>
+        <div class="rule-thin"></div>
+        <div class="ad-box">
+          <div style="font-size:28px; margin-bottom:4px">🐴</div>
+          <div class="ad-title" contenteditable="true">DRONA'S DIVINE ARMS CO.</div>
+          <div class="ad-sub" contenteditable="true">"Weapons Worthy of Your Lineage"</div>
+          <div class="rule-thin"></div>
+          <div class="ad-detail" contenteditable="true">
+            ✦ Brahmastra Certified<br>
+            ✦ Student Discounts Available<br>
+            ✦ Customizable Quivers<br>
+            ✦ We Do Not Ask Where Your Thumb Went
+          </div>
+          <div style="margin-top:6px; font-family:'IM Fell English',serif; font-size:8px; color:var(--faded)" contenteditable="true">Visit us at Guru Drona's Ashram, Hastinapur Road</div>
+        </div>
+
+        <div class="ad-box" style="margin-top:8px">
+          <div style="font-size:24px; margin-bottom:4px">⚔️🛡️</div>
+          <div class="ad-title" style="font-size:14px" contenteditable="true">GANDIVA INSURANCE</div>
+          <div class="ad-sub" contenteditable="true">"When Arjuna Shoots, Someone Has to Pay"</div>
+          <div class="ad-detail" contenteditable="true">
+            War Coverage · Divine Weapon Damage<br>
+            Kingdom Loss · Acts of Dharma<br>
+            <em>Dice game losses NOT covered.</em>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="section-label">✦ Public Opinion ✦</div>
+        <div class="rule-thin"></div>
+        <div class="headline-sm centered" contenteditable="true">READERS' POLL: WHICH SIDE DO YOU SUPPORT?</div>
+        <div class="rule-thin"></div>
+        <div style="margin: 6px 0;">
+          <div class="poll-bar-container">
+            <div class="poll-label"><span contenteditable="true">The Pandavas</span><span>54%</span></div>
+            <div class="poll-bar"><div class="poll-fill" style="width:54%"></div></div>
+          </div>
+          <div class="poll-bar-container" style="margin-top:5px">
+            <div class="poll-label"><span contenteditable="true">The Kauravas</span><span>31%</span></div>
+            <div class="poll-bar"><div class="poll-fill" style="width:31%"></div></div>
+          </div>
+          <div class="poll-bar-container" style="margin-top:5px">
+            <div class="poll-label"><span contenteditable="true">Undecided / Fled the region</span><span>15%</span></div>
+            <div class="poll-bar"><div class="poll-fill" style="width:15%"></div></div>
+          </div>
+        </div>
+        <div class="rule-thin"></div>
+        <div class="letter" contenteditable="true">"The Pandavas suffered for thirteen years and fulfilled every term. Dharma is clearly on their side."
+          <div class="letter-sig">— Brahmin Scholar, Panchala</div>
+        </div>
+        <div class="letter" contenteditable="true">"Duryodhana built roads. His people love him. Don't believe everything you read in this paper."
+          <div class="letter-sig">— Merchant, Anga Province</div>
+        </div>
+        <div class="letter" contenteditable="true">"I support whoever Krishna supports. I feel this is the safest position."
+          <div class="letter-sig">— Citizen, Dvaraka</div>
+        </div>
+      </div>
+
+    </div>
+
+  </div><!-- /page 1 -->
+
+  <!-- ══════════════ PAGE TWO HEADER ══════════════ -->
+  <hr class="page-break">
+  <div class="page-header">
+    <span>THE BHARATA BULLETIN</span>
+    <span contenteditable="true">WAR SPECIAL EDITION — PAGE TWO</span>
+    <span>MONTH OF KARTIKA</span>
+  </div>
+
+  <!-- ══════════════ PAGE TWO ══════════════ -->
+  <div class="page">
+
+    <div class="col-grid-3">
+
+      <!-- Col 1: Gossip -->
+      <div class="col">
+        <div class="inverted" style="margin-bottom:6px">
+          <div class="headline-md">Ghandari's Gossip</div>
+          <div style="font-family:'IM Fell English',serif; font-style:italic; font-size:9px; color:var(--paper-dark)">Your Premier Gossip Column</div>
+        </div>
+
+        <div class="headline-sm" contenteditable="true">WHAT WERE THE PANDAVAS REALLY DOING IN VIRATA?</div>
+        <div class="byline">Sources: Several Palace Servants, One Gossipy Maid</div>
+        <div class="rule-thin"></div>
+
+        <div class="gossip-item body-text" contenteditable="true">
+          <span class="gossip-name">YUDHISHTHIRA</span> — The man who is famously untalented at gambling took up residence in King Virata's gambling hall as a dice expert. The irony has not been lost on this correspondent. He called himself "Kanka."
+        </div>
+        <div class="gossip-item body-text" contenteditable="true">
+          <span class="gossip-name">BHIMA</span> — Worked as a royal chef. Sources confirm the food was extraordinary. He also killed the court wrestling champion in his spare time, which raised some eyebrows. He claimed that the man merely tripped.
+        </div>
+        <div class="gossip-item body-text" contenteditable="true">
+          <span class="gossip-name">ARJUNA</span> — Arjuna, the greatest archer alive, spent a year teaching music and dance to Princess Uttaraa. He wore women's clothing, eyeliner, bangles (some say to cover up bruises from his bow), and went by "Brhannala.".
+        </div>
+        <div class="gossip-item body-text" contenteditable="true">
+          <span class="gossip-name">NAKULA & SAHADEVA</span> — Horse groomer and cowherd, respectively. The twins have refused all comment. Can't say we blame them.
+        </div>
+        <div class="gossip-item body-text" contenteditable="true">
+          <span class="gossip-name">DRAUPADI</span> — Served as lady's maid to Queen Sudeshna. The people are outraged. The Queen of Indraprastha as a maid. It's unthinkable. Imagine the hardships she had to go through, not to mention the harassments by Keechaka.
+        </div>
+      </div>
+
+      <!-- Col 2: Karna -->
+      <div class="col">
+        <div class="section-label">✦ Investigative Report ✦</div>
+        <div class="rule-thin"></div>
+        <div class="headline-lg" contenteditable="true">KARNA: WHO IS HE, REALLY?</div>
+        <div class="subhead" contenteditable="true">The Warrior, The Mystery, The Armour</div>
+        <div class="rule-thin"></div>
+        <div class="body-text" contenteditable="true">
+          <p>He is the greatest warrior on the Kaurava side. While this may be controversial, some claim he is the greatest warrior alive, surpassing Arjuna! He is Duryodhana's most trusted companion, but almost nobody knows where he comes from.</p>
+          <p>Born to a charioteer — or so the official story goes — Karna arrived at the Kuru princes' exhibition tournament and outperformed Arjuna in every discipline. When asked his lineage, he could not answer. Kripacharya barred him from competing. But Duryodhana saw the potential and made him King of Anga on the spot, sealing their friendship forever.</p>
+          <p>But whispers persist. He was born with divine armour fused to his skin and earrings of celestial gold. No charioteer's son is born so. The sun god Surya is mentioned in hushed tones. And why, this paper asks, has Kunti (mother of the Pandavas) been seen weeping alone after looking at him?</p>
+          <p>All the evidence leaves people theorizing about his true origin. Could this man be of Kshatriya lineage?</p>
+
+        </div>
+        <div class="body-text" contenteditable="true">
+        </div>
+      </div>
+
+      <!-- Col 3: Obituaries + Advice + Ad -->
+      <div class="col">
+        <div class="section-label">✦ Notices ✦</div>
+        <div class="rule-thin"></div>
+        <div class="headline-md centered" contenteditable="true">OBITUARIES</div>
+        <div class="rule-thin"></div>
+
+        <div class="col3" contenteditable="true" style="font-size: 9px;">
+        <strong>KEECHAKA</strong>, Commander of Virata's Forces — Died during the Pandavas' incognito year under circumstances described officially as "a training accident." He is survived by sixty younger brothers who made the poor decision of seeking revenge on the palace's head chef. They are also deceased.
+        </div>
+
+        <div class="rule-double" style="margin-top:10px"></div>
+
+        <div class="inverted" style="margin-bottom:6px">
+          <div class="headline-sm">ASK VIDURA</div>
+          <div style="font-family:'IM Fell English',serif; font-style:italic; font-size:8px; color:var(--paper-dark)">Dharmic Advice Columns</div>
+        </div>
+
+        <div class="body-text" style="font-size:9.5px" contenteditable="true">
+          <p><strong>Dear Vidura,</strong> <em>Is it acceptable to cheat at dice if the other person is very annoying?</em><br>
+          <strong>Vidura says:</strong> No. I should not have to explain why. Next question.</p>
+          <div class="rule-thin"></div>
+          <p><strong>Dear Vidura,</strong> <em>I know what the right thing to do is, but I love my son. What should I do?</em><br>
+          <strong>Vidura says:</strong> This question is from Dhritarashtra. I am not answering it again.</p>
+        </div>
+
+        <div class="rule-double" style="margin-top:10px"></div>
+        <div class="section-label">✦ Economy ✦</div>
+        <div class="rule-thin"></div>
+        <div class="headline-sm" contenteditable="true">WAR ECONOMY REPORT: WEAPONS MARKET AT ALL-TIME HIGH</div>
+        <div class="rule-thin"></div>
+        <div class="market-table-wrap">
+          <table class="market-table">
+            <thead>
+              <tr><th>Commodity</th><th>Change</th><th>Trend</th></tr>
+            </thead>
+            <tbody>
+              <tr><td contenteditable="true">War Chariots</td><td class="up" contenteditable="true">+340%</td><td>▲</td></tr>
+              <tr><td contenteditable="true">Bronze Armour</td><td class="up" contenteditable="true">+280%</td><td>▲</td></tr>
+              <tr><td contenteditable="true">Bow-strings</td><td class="up" contenteditable="true">+190%</td><td>▲</td></tr>
+              <tr><td contenteditable="true">Arrow Shafts</td><td class="up" contenteditable="true">+220%</td><td>▲</td></tr>
+              <tr><td contenteditable="true">Kurukshetra Land</td><td class="down" contenteditable="true">−89%</td><td>▼</td></tr>
+              <tr><td contenteditable="true">Peace Treaties</td><td class="down" contenteditable="true">−100%</td><td>▼</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="body-text" style="font-size:9px; color:var(--faded); margin-top:4px" contenteditable="true"><em>"Both sides are buying. We've never seen demand like this." — Hastinapur Armaments Analyst</em></div>
+
+      </div>
+
+    </div><!-- /col-grid-3 -->
+
+    <!-- ── COMIC STRIP ── -->
+    <div class="rule-double"></div>
+    <div class="section-label">✦ Entertainment ✦</div>
+    <div class="rule-thin"></div>
+    <div class="headline-sm centered" contenteditable="true">LARGE REED — A Comic Strip by Our Staff Artist</div>
+    <div class="rule-thin"></div>
+
+    <div style="width: 100%; margin: 8px 0;">
+  <img src="largereed.png" alt="The Virata Court" style="width: 100%; display: block;">
+</div>
+
+    <!-- ── CROSSWORD ── -->
+    <div class="rule-double"></div>
+    <div class="col-grid-2">
+      <div class="col">
+        <div class="section-label">✦ Games ✦</div>
+        <div class="rule-thin"></div>
+        <div class="headline-sm centered">KURUKSHETRA KROSSWORD</div>
+        <div class="subhead">"Know Your Epics"</div>
+
+        <div style="width: 100%; margin: 8px 0;">
+  <img src="crossword.png" alt="" style="width: 100%; display: block;">
+</div>
+
+      </div>
+
+      <div class="col">
+        <div style="height:32px"></div>
+        <div class="clue-list" contenteditable="true">
+  <strong>ACROSS</strong><br>
+  1. The sacred battlefield plain (abbrev.) (5)<br>
+  2. Shakuni's greatest talent (4)<br>
+  4. Arjuna's divine bow (7)<br>
+  5. What Ekalavya had to sacrifice for Drona (5)<br>
+  <br>
+  <strong>DOWN</strong><br>
+  1. Duryodhana's most loyal ally (5)<br>
+  2. Duty, cosmic order (6)<br>
+  3. What the Pandavas endured for 12 years (4)<br>
+</div>
+
+<div style="transform: rotate(180deg); margin-top: 12px; font-family: 'IM Fell English', serif; font-size: 8.5px; color: var(--faded); border-top: 1px solid var(--rule); padding-top: 6px;">
+  <strong style="color: var(--ink-light);">ANSWERS</strong><br>
+  Across: 1. KURUK &nbsp; 2. DICE &nbsp; 4. GANDIVA &nbsp; 5. THUMB<br>
+  Down: 1. KARNA &nbsp; 2. DHARMA &nbsp; 3. EXILE
+</div>
+
+    </div>
+
+  </div><!-- /page 2 -->
+
+  <!-- ══════════════ FOOTER ══════════════ -->
+  <div style="border-top: 4px double var(--rule); background: var(--paper-dark); padding: 8px 20px; display:flex; justify-content:space-between; align-items:center;">
+    <div style="font-family:'IM Fell English',serif; font-size:8.5px; color:var(--faded)" contenteditable="true">
+      All content subject to divine revision. Editor: Charmi Buddaluru. Narrated by: Sanjaya & Vyasa.
+    </div>
+    <div style="font-family:'UnifrakturMaguntia',cursive; font-size:22px; color:var(--faded)">✦ BB ✦</div>
+    <div style="font-family:'IM Fell English',serif; font-size:8.5px; color:var(--faded); text-align:right" contenteditable="true">
+      Next Issue: <em>War Begins — Full Coverage</em><br>
+    </div>
+  </div>
+
+</div><!-- /newspaper -->
+</body>
+</html>
