@@ -521,21 +521,10 @@
   .caps { font-variant: small-caps; letter-spacing: 1px; }
   .red { color: var(--accent); }
 
-  /* ── EDITABLE HINT ── */
-  [contenteditable="true"]:hover {
-    outline: 1px dashed rgba(139,26,26,0.4);
-    cursor: text;
-  }
-  [contenteditable="true"]:focus {
-    outline: 2px solid rgba(139,26,26,0.6);
-    background: rgba(255,255,255,0.3);
-  }
-
   /* print */
   @media print {
     body { background: white; padding: 0; }
     .newspaper { box-shadow: none; max-width: 100%; }
-    [contenteditable]:hover, [contenteditable]:focus { outline: none; background: transparent; }
   }
 </style>
 </head>
@@ -549,7 +538,7 @@
       <span style="font-size:8px; letter-spacing:1px; color:var(--faded)">✦ &nbsp; ✦ &nbsp; ✦</span>
       <span style="text-align:right">Price: Two coins</span>
     </div>
-    <div class="paper-name" contenteditable="true">The Bharata Bulletin</div>
+    <div class="paper-name">The Bharata Bulletin</div>
     <div class="masthead-meta">
       <span>VOL. 6 — NO. 7</span>
       <span>HASTINAPUR, YEAR OF THE GREAT WAR</span>
@@ -562,11 +551,11 @@
 
     <!-- Row 1: Breaking news headline -->
     <div class="rule-thick"></div>
-    <div class="section-label" contenteditable="true">⚔ Breaking News ⚔</div>
+    <div class="section-label">⚔ Breaking News ⚔</div>
     <div class="rule-thin"></div>
 
-    <div class="headline-xl" contenteditable="true">WAR DECLARED</div>
-    <div class="subhead" contenteditable="true">The Cousins to Meet on the Battlefield — Kingdoms Across the Lands Choose Sides</div>
+    <div class="headline-xl">WAR DECLARED</div>
+    <div class="subhead">The Cousins to Meet on the Battlefield — Kingdoms Across the Lands Choose Sides</div>
     <div class="rule-thick"></div>
 
     <!-- Row 2: Three-column main story -->
@@ -574,13 +563,13 @@
 
       <!-- Col 1: Main war story -->
       <div class="col">
-        <div class="body-text dropcap" contenteditable="true">
+        <div class="body-text dropcap">
           <p>In a development that shocks no one who has been paying attention for the past fourteen years, the Pandava brothers and the Kaurava princes have formally declared war, setting the sacred plains of Kurukshetra as their battlefield. The two great armies are expected to meet at dawn.</p>
-          <p>The Pandavas stand under the command of Dhrishtadyumna of Panchala, with the great Arjuna, Wolfbelly Bhima, the twin warriors Nakula and Sahadeva, Satyaki of the Vrishnis, and Shikhandi of Panchala among its prominent champions. The Kaurava army is led by the venerable Bhishma, grandsire of both houses, alongside Drona, Ashvatthama, Kripacharya, Shalya, and Jayadratha of Sindhu.</p>
+          <p>The Pandavas stand under the command of Dhrishtadyumna of Panchala, with the great Arjuna, Wolfbelly Bhima, the twin warriors Nakula and Sahadeva, Satyaki of the Vrishnis, and Shikhandin of Panchala among its prominent champions. The Kaurava army is led by the venerable Bhishma, grandsire of both houses, alongside Drona, Ashvatthama, Kripacharya, Shalya, and Jayadratha of Sindhu.</p>
           <p>Readers may note the conspicuous absence of Karna from active duty. Coverage following.</p>
         </div>
-        <div class="pull-quote" contenteditable="true">"He chose the man over the million." — On Arjuna's decision</div>
-        <div class="body-text" contenteditable="true">
+        <div class="pull-quote">"He chose the man over the million." — On Arjuna's decision</div>
+        <div class="body-text">
 <p>Among the most discussed decisions today, is when Lord Krishna offered the two sides a choice — his army of one million soldiers or Krishna himself. Furthermore, Krishna would abstain from fighting. Arjuna was offered the choice first and without hesitation, he chooses Krishna as his charioteer. "I know you could win this war single-handed, and so could I. With you steering my chariot, we shall gain great glory together. Best of men, may we prevail!" Duryodhana, on the other hand was exultant to recieve an army of a million of the strongest warriors. Analysts across the subcontinent continue to debate who got the short end of the stick.</p>
 </div>
       </div>
@@ -589,9 +578,9 @@
       <div class="col">
 
         <div class="rule-thin"></div>
-        <div class="headline-sm centered" contenteditable="true">FIELDS EMPTIED, STABLES STRIPPED</div>
+        <div class="headline-sm centered">FIELDS EMPTIED, STABLES STRIPPED</div>
         <div class="rule-thin"></div>
-        <div class="body-text" contenteditable="true">
+        <div class="body-text">
           <p>Across the countryside, recruiters from both camps have swept through villages and farms, pressing men into service. Farmhands who last week tended rice paddies now sharpen spears. Granaries are requisitioned. Families watch the roads.</p>
           <p>The beasts of war assemble in numbers not seen in living memory: horses trained to charge in tight formation; fighting elephants schooled to trample into the thick of battle; and innumerable beasts hauling across the dust of the plain toward Kurukshetra.</p>
         </div>
@@ -615,16 +604,16 @@
       <!-- Col 3: Bhishma/Shikhandi + Karna -->
       <div class="col">
         <div class="inverted">
-          <div class="headline-md" contenteditable="true"> Internal Disputes </div>
+          <div class="headline-md"> Internal Disputes </div>
           <div style="font-family:'IM Fell English',serif; font-size:9px; font-style:italic; color:var(--paper-dark)">And their reasons for refusing to fight</div>
         </div>
-        <div class="body-text" style="margin-top:8px" contenteditable="true">
-          <p><strong>BHISHMA & SHIKHANDIN:</strong> The grandsire Bhishma, commanding the Kaurava forces, has announced one condition his own generals find deeply peculiar: he will not raise his bow against Shikhandi of Panchala because Shikhandin was, in a previous life, a woman. Born Amba, princess of Kashi, she was wronged by Bhishma in her first life and returned reborn, sworn to destroy him. Bhishma knows this and will not fight Shikhandin.</p>
-          <p>The Pandavas are placing Shikhandi at the very front of their formation. Bhishma is reported to be aware of this. Both parties appear to have accepted the logic of the arrangement.</p>
+        <div class="body-text" style="margin-top:8px">
+          <p><strong>BHISHMA & SHIKHANDIN:</strong> The grandsire Bhishma, commanding the Kaurava forces, has announced one condition his own generals find deeply peculiar: he will not raise his bow against Shikhandin of Panchala because Shikhandin was, in a previous life, a woman. Born Amba, princess of Kashi, she was wronged by Bhishma in her first life and returned reborn, sworn to destroy him. Bhishma knows this and will not fight Shikhandin.</p>
+          <p>The Pandavas are placing Shikhandin at the very front of their formation. Bhishma is reported to be aware of this. Both parties appear to have accepted the logic of the arrangement.</p>
           <div class="rule-thin"></div>
           <p><strong>KARNA & BHISHMA:</strong> The great Karna, Duryodhana's most valued champion, has refused to fight so long as Bhishma holds command. The enmity between the two men is bitter: Bhishma often undermines Karna's prowess due to his social status. Karna refuses to serve under the man who diminshes him. Instead, the moment Bhishma falls, Karna will take the field.</p>
           <div class="rule-thin"></div>
-          <p><strong>BALARAMA:</strong> Having taught both men personally, Balarama declared himself unable in conscience to take up arms against his own students. His departure reflects his brother Krishna's, who chooses to have a non-combatant role on the Pandava side as an unarmed charioteer."</p>
+          <p><strong>BALARAMA:</strong> Having taught both men personally, Balarama declared that he would not take up arms against his own students. This decision reflects his brother Krishna's, who chose to have a non-combatant role on the Pandava side as an unarmed charioteer.</p>
         </div>
       </div>
     </div><!-- /col-grid-3 -->
@@ -637,10 +626,10 @@
       <div class="col">
         <div class="section-label">✦ Celebrations ✦</div>
         <div class="rule-thin"></div>
-        <div class="headline-md centered" contenteditable="true">WEDDING OF THE SEASON</div>
-        <div class="subhead" contenteditable="true">Prince Abhimanyu Weds Princess Uttaraa</div>
+        <div class="headline-md centered">WEDDING OF THE SEASON</div>
+        <div class="subhead">Prince Abhimanyu Weds Princess Uttaraa</div>
         <div class="ornament">— ❧ —</div>
-        <div class="body-text" contenteditable="true">
+        <div class="body-text">
           <p>In what guests are calling the calm  before the storm, the marriage of young Abhimanyu — son of Arjuna and Subhadra of Dvaraka — to Princess Uttaraa of Virata was celebrated with great ceremony at the Virata palace.</p>
           <p>The groom, trained personally by Lord Krishna, is widely considered the most promising warrior of his generation. He reportedly learned the Chakravyuha formation while still in his mother's womb, though sources suggest he may have missed the exit strategy.</p>
           <p>The bride wore silk. The groom wore armour. The guests were mostly warriors. It was, by all accounts, a beautiful occasion.</p>
@@ -652,23 +641,23 @@
         <div class="rule-thin"></div>
         <div class="ad-box">
           <div style="font-size:28px; margin-bottom:4px">🐴</div>
-          <div class="ad-title" contenteditable="true">DRONA'S DIVINE ARMS CO.</div>
-          <div class="ad-sub" contenteditable="true">"Weapons Worthy of Your Lineage"</div>
+          <div class="ad-title">DRONA'S DIVINE ARMS CO.</div>
+          <div class="ad-sub">"Weapons Worthy of Your Lineage"</div>
           <div class="rule-thin"></div>
-          <div class="ad-detail" contenteditable="true">
+          <div class="ad-detail">
             ✦ Brahmastra Certified<br>
             ✦ Student Discounts Available<br>
             ✦ Customizable Quivers<br>
             ✦ We Do Not Ask Where Your Thumb Went
           </div>
-          <div style="margin-top:6px; font-family:'IM Fell English',serif; font-size:8px; color:var(--faded)" contenteditable="true">Visit us at Guru Drona's Ashram, Hastinapur Road</div>
+          <div style="margin-top:6px; font-family:'IM Fell English',serif; font-size:8px; color:var(--faded)">Visit us at Guru Drona's Ashram, Hastinapur Road</div>
         </div>
 
         <div class="ad-box" style="margin-top:8px">
           <div style="font-size:24px; margin-bottom:4px">⚔️🛡️</div>
-          <div class="ad-title" style="font-size:14px" contenteditable="true">GANDIVA INSURANCE</div>
-          <div class="ad-sub" contenteditable="true">"When Arjuna Shoots, Someone Has to Pay"</div>
-          <div class="ad-detail" contenteditable="true">
+          <div class="ad-title" style="font-size:14px">GANDIVA INSURANCE</div>
+          <div class="ad-sub">"When Arjuna Shoots, Someone Has to Pay"</div>
+          <div class="ad-detail">
             War Coverage · Divine Weapon Damage<br>
             Kingdom Loss · Acts of Dharma<br>
             <em>Dice game losses NOT covered.</em>
@@ -679,30 +668,30 @@
       <div class="col">
         <div class="section-label">✦ Public Opinion ✦</div>
         <div class="rule-thin"></div>
-        <div class="headline-sm centered" contenteditable="true">READERS' POLL: WHICH SIDE DO YOU SUPPORT?</div>
+        <div class="headline-sm centered">READERS' POLL: WHICH SIDE DO YOU SUPPORT?</div>
         <div class="rule-thin"></div>
         <div style="margin: 6px 0;">
           <div class="poll-bar-container">
-            <div class="poll-label"><span contenteditable="true">The Pandavas</span><span>54%</span></div>
+            <div class="poll-label"><span>The Pandavas</span><span>54%</span></div>
             <div class="poll-bar"><div class="poll-fill" style="width:54%"></div></div>
           </div>
           <div class="poll-bar-container" style="margin-top:5px">
-            <div class="poll-label"><span contenteditable="true">The Kauravas</span><span>31%</span></div>
+            <div class="poll-label"><span>The Kauravas</span><span>31%</span></div>
             <div class="poll-bar"><div class="poll-fill" style="width:31%"></div></div>
           </div>
           <div class="poll-bar-container" style="margin-top:5px">
-            <div class="poll-label"><span contenteditable="true">Undecided / Fled the region</span><span>15%</span></div>
+            <div class="poll-label"><span>Undecided / Fled the region</span><span>15%</span></div>
             <div class="poll-bar"><div class="poll-fill" style="width:15%"></div></div>
           </div>
         </div>
         <div class="rule-thin"></div>
-        <div class="letter" contenteditable="true">"The Pandavas suffered for thirteen years and fulfilled every term. Dharma is clearly on their side."
+        <div class="letter">"The Pandavas suffered for thirteen years and fulfilled every term. Dharma is clearly on their side."
           <div class="letter-sig">— Brahmin Scholar, Panchala</div>
         </div>
-        <div class="letter" contenteditable="true">"Duryodhana built roads. His people love him. Don't believe everything you read in this paper."
+        <div class="letter">"Duryodhana built roads. His people love him. Don't believe everything you read in this paper."
           <div class="letter-sig">— Merchant, Anga Province</div>
         </div>
-        <div class="letter" contenteditable="true">"I support whoever Krishna supports. I feel this is the safest position."
+        <div class="letter">"I support whoever Krishna supports. I feel this is the safest position."
           <div class="letter-sig">— Citizen, Dvaraka</div>
         </div>
       </div>
@@ -715,7 +704,7 @@
   <hr class="page-break">
   <div class="page-header">
     <span>THE BHARATA BULLETIN</span>
-    <span contenteditable="true">WAR SPECIAL EDITION — PAGE TWO</span>
+    <span>WAR SPECIAL EDITION — PAGE TWO</span>
     <span>MONTH OF KARTIKA</span>
   </div>
 
@@ -731,23 +720,23 @@
           <div style="font-family:'IM Fell English',serif; font-style:italic; font-size:9px; color:var(--paper-dark)">Your Premier Gossip Column</div>
         </div>
 
-        <div class="headline-sm" contenteditable="true">WHAT WERE THE PANDAVAS REALLY DOING IN VIRATA?</div>
+        <div class="headline-sm">WHAT WERE THE PANDAVAS REALLY DOING IN VIRATA?</div>
         <div class="byline">Sources: Several Palace Servants, One Gossipy Maid</div>
         <div class="rule-thin"></div>
 
-        <div class="gossip-item body-text" contenteditable="true">
+        <div class="gossip-item body-text">
           <span class="gossip-name">YUDHISHTHIRA</span> — The man who is famously untalented at gambling took up residence in King Virata's gambling hall as a dice expert. The irony has not been lost on this correspondent. He called himself "Kanka."
         </div>
-        <div class="gossip-item body-text" contenteditable="true">
+        <div class="gossip-item body-text">
           <span class="gossip-name">BHIMA</span> — Worked as a royal chef. Sources confirm the food was extraordinary. He also killed the court wrestling champion in his spare time, which raised some eyebrows. He claimed that the man merely tripped.
         </div>
-        <div class="gossip-item body-text" contenteditable="true">
+        <div class="gossip-item body-text">
           <span class="gossip-name">ARJUNA</span> — Arjuna, the greatest archer alive, spent a year teaching music and dance to Princess Uttaraa. He wore women's clothing, eyeliner, bangles (some say to cover up bruises from his bow), and went by "Brhannala.".
         </div>
-        <div class="gossip-item body-text" contenteditable="true">
+        <div class="gossip-item body-text">
           <span class="gossip-name">NAKULA & SAHADEVA</span> — Horse groomer and cowherd, respectively. The twins have refused all comment. Can't say we blame them.
         </div>
-        <div class="gossip-item body-text" contenteditable="true">
+        <div class="gossip-item body-text">
           <span class="gossip-name">DRAUPADI</span> — Served as lady's maid to Queen Sudeshna. The people are outraged. The Queen of Indraprastha as a maid. It's unthinkable. Imagine the hardships she had to go through, not to mention the harassments by Keechaka.
         </div>
       </div>
@@ -756,17 +745,17 @@
       <div class="col">
         <div class="section-label">✦ Investigative Report ✦</div>
         <div class="rule-thin"></div>
-        <div class="headline-lg" contenteditable="true">KARNA: WHO IS HE, REALLY?</div>
-        <div class="subhead" contenteditable="true">The Warrior, The Mystery, The Armour</div>
+        <div class="headline-lg">KARNA: WHO IS HE, REALLY?</div>
+        <div class="subhead">The Warrior, The Mystery, The Armour</div>
         <div class="rule-thin"></div>
-        <div class="body-text" contenteditable="true">
+        <div class="body-text">
           <p>He is the greatest warrior on the Kaurava side. While this may be controversial, some claim he is the greatest warrior alive, surpassing Arjuna! He is Duryodhana's most trusted companion, but almost nobody knows where he comes from.</p>
           <p>Born to a charioteer — or so the official story goes — Karna arrived at the Kuru princes' exhibition tournament and outperformed Arjuna in every discipline. When asked his lineage, he could not answer. Kripacharya barred him from competing. But Duryodhana saw the potential and made him King of Anga on the spot, sealing their friendship forever.</p>
           <p>But whispers persist. He was born with divine armour fused to his skin and earrings of celestial gold. No charioteer's son is born so. The sun god Surya is mentioned in hushed tones. And why, this paper asks, has Kunti (mother of the Pandavas) been seen weeping alone after looking at him?</p>
           <p>All the evidence leaves people theorizing about his true origin. Could this man be of Kshatriya lineage?</p>
 
         </div>
-        <div class="body-text" contenteditable="true">
+        <div class="body-text">
         </div>
       </div>
 
@@ -774,10 +763,10 @@
       <div class="col">
         <div class="section-label">✦ Notices ✦</div>
         <div class="rule-thin"></div>
-        <div class="headline-md centered" contenteditable="true">OBITUARIES</div>
+        <div class="headline-md centered">OBITUARIES</div>
         <div class="rule-thin"></div>
 
-        <div class="col3" contenteditable="true" style="font-size: 9px;">
+        <div class="col3" style="font-size: 9px;">
         <strong>KEECHAKA</strong>, Commander of Virata's Forces — Died during the Pandavas' incognito year under circumstances described officially as "a training accident." He is survived by sixty younger brothers who made the poor decision of seeking revenge on the palace's head chef. They are also deceased.
         </div>
 
@@ -788,7 +777,7 @@
           <div style="font-family:'IM Fell English',serif; font-style:italic; font-size:8px; color:var(--paper-dark)">Dharmic Advice Columns</div>
         </div>
 
-        <div class="body-text" style="font-size:9.5px" contenteditable="true">
+        <div class="body-text" style="font-size:9.5px">
           <p><strong>Dear Vidura,</strong> <em>Is it acceptable to cheat at dice if the other person is very annoying?</em><br>
           <strong>Vidura says:</strong> No. I should not have to explain why. Next question.</p>
           <div class="rule-thin"></div>
@@ -799,7 +788,7 @@
         <div class="rule-double" style="margin-top:10px"></div>
         <div class="section-label">✦ Economy ✦</div>
         <div class="rule-thin"></div>
-        <div class="headline-sm" contenteditable="true">WAR ECONOMY REPORT: WEAPONS MARKET AT ALL-TIME HIGH</div>
+        <div class="headline-sm">WAR ECONOMY REPORT: WEAPONS MARKET AT ALL-TIME HIGH</div>
         <div class="rule-thin"></div>
         <div class="market-table-wrap">
           <table class="market-table">
@@ -807,16 +796,16 @@
               <tr><th>Commodity</th><th>Change</th><th>Trend</th></tr>
             </thead>
             <tbody>
-              <tr><td contenteditable="true">War Chariots</td><td class="up" contenteditable="true">+340%</td><td>▲</td></tr>
-              <tr><td contenteditable="true">Bronze Armour</td><td class="up" contenteditable="true">+280%</td><td>▲</td></tr>
-              <tr><td contenteditable="true">Bow-strings</td><td class="up" contenteditable="true">+190%</td><td>▲</td></tr>
-              <tr><td contenteditable="true">Arrow Shafts</td><td class="up" contenteditable="true">+220%</td><td>▲</td></tr>
-              <tr><td contenteditable="true">Kurukshetra Land</td><td class="down" contenteditable="true">−89%</td><td>▼</td></tr>
-              <tr><td contenteditable="true">Peace Treaties</td><td class="down" contenteditable="true">−100%</td><td>▼</td></tr>
+              <tr><td>War Chariots</td><td class="up">+340%</td><td>▲</td></tr>
+              <tr><td>Bronze Armour</td><td class="up">+280%</td><td>▲</td></tr>
+              <tr><td>Bow-strings</td><td class="up">+190%</td><td>▲</td></tr>
+              <tr><td>Arrow Shafts</td><td class="up">+220%</td><td>▲</td></tr>
+              <tr><td>Kurukshetra Land</td><td class="down">−89%</td><td>▼</td></tr>
+              <tr><td>Peace Treaties</td><td class="down">−100%</td><td>▼</td></tr>
             </tbody>
           </table>
         </div>
-        <div class="body-text" style="font-size:9px; color:var(--faded); margin-top:4px" contenteditable="true"><em>"Both sides are buying. We've never seen demand like this." — Hastinapur Armaments Analyst</em></div>
+        <div class="body-text" style="font-size:9px; color:var(--faded); margin-top:4px"><em>"Both sides are buying. We've never seen demand like this." — Hastinapur Armaments Analyst</em></div>
 
       </div>
 
@@ -826,7 +815,7 @@
     <div class="rule-double"></div>
     <div class="section-label">✦ Entertainment ✦</div>
     <div class="rule-thin"></div>
-    <div class="headline-sm centered" contenteditable="true">LARGE REED — A Comic Strip by Our Staff Artist</div>
+    <div class="headline-sm centered">LARGE REED — A Comic Strip by Our Staff Artist</div>
     <div class="rule-thin"></div>
 
     <div style="width: 100%; margin: 8px 0;">
@@ -850,7 +839,7 @@
 
       <div class="col">
         <div style="height:32px"></div>
-        <div class="clue-list" contenteditable="true">
+        <div class="clue-list">
   <strong>ACROSS</strong><br>
   1. The sacred battlefield plain (abbrev.) (5)<br>
   2. Shakuni's greatest talent (4)<br>
@@ -875,11 +864,11 @@
 
   <!-- ══════════════ FOOTER ══════════════ -->
   <div style="border-top: 4px double var(--rule); background: var(--paper-dark); padding: 8px 20px; display:flex; justify-content:space-between; align-items:center;">
-    <div style="font-family:'IM Fell English',serif; font-size:8.5px; color:var(--faded)" contenteditable="true">
+    <div style="font-family:'IM Fell English',serif; font-size:8.5px; color:var(--faded)">
       All content subject to divine revision. Editor: Charmi Buddaluru. Narrated by: Sanjaya & Vyasa.
     </div>
     <div style="font-family:'UnifrakturMaguntia',cursive; font-size:22px; color:var(--faded)">✦ BB ✦</div>
-    <div style="font-family:'IM Fell English',serif; font-size:8.5px; color:var(--faded); text-align:right" contenteditable="true">
+    <div style="font-family:'IM Fell English',serif; font-size:8.5px; color:var(--faded); text-align:right">
       Next Issue: <em>War Begins — Full Coverage</em><br>
     </div>
   </div>
